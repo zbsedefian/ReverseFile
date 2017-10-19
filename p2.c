@@ -31,8 +31,8 @@ int main(int argc, char *argv[]){
 	size_t size = 0;
 
 	/* Add .txt extension */
-	int inFileNameSize = strlen(argv[INFILEARG]);
-	int outFileNameSize = strlen(argv[OUTFILEARG]);
+	int inFileNameSize = sizeof(argv[INFILEARG]); /* strlen if unix */
+	int outFileNameSize = sizeof(argv[OUTFILEARG]); /* strlen if unix */
 
 	char inFileName[inFileNameSize+4]; /* add 4 to have room for ".txt" */
 	char outFileName[outFileNameSize+4];
