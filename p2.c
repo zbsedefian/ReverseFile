@@ -31,15 +31,25 @@ int main(int argc, char *argv[]){
 	size_t size = 0;
 
 	/* Add .txt extension */
-	int inFileNameSize = sizeof(argv[INFILEARG]); /* strlen if unix */
-	int outFileNameSize = sizeof(argv[OUTFILEARG]); /* strlen if unix */
+	int inFileNameSize = strlen(argv[INFILEARG]); 
+	int outFileNameSize = strlen(argv[OUTFILEARG]);
+	
+    /* Allocate 4 extra to have room for ".txt" */
+	char *inFileName = malloc(sizeof(char) * (inFileNameSize+4));
+	char *outFileName = malloc(sizeof(char) * (outFileNameSize+4));
+	
+	/* Check if allocation failed */
+	if (inFileName == NULL){
+		printf("Failed to allocate memory for inFileName\n"); fflush(stdout);
+	}
+	if (outFileName == NULL){
+		printf("Failed to allocate memory for outFileName\n"); fflush(stdout);
+	}
 
-	char inFileName[inFileNameSize+4]; /* add 4 to have room for ".txt" */
-	char outFileName[outFileNameSize+4];
-
-	strcat(inFileName, argv[INFILEARG]);
+	/* Concatanate command line arguments with .txt */
+	strcpy(inFileName, argv[INFILEARG]);
 	strcat(inFileName, ".txt");
-	strcat(outFileName, argv[OUTFILEARG]);
+	strcpy(outFileName, argv[OUTFILEARG]);
 	strcat(outFileName, ".txt");
 
 	/* Check for errors in argument number and opening files. */
