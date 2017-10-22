@@ -95,8 +95,8 @@ int main(int argc, char *argv[]){
 
 		/* Break holdLine up into words, store in holdWords */
 		i = 0;
-		for(wordToken = strtok(holdLine, " "); wordToken != NULL; 
-		    wordToken = strtok(wordToken + strlen(wordToken) + 1, " ")){
+		for(wordToken = strtok(holdLine, " \t"); wordToken != NULL; 
+		    wordToken = strtok(wordToken + strlen(wordToken) + 1, " \t")){
 			holdWords[i] = malloc(strlen(wordToken) + 1);
 			strcpy(holdWords[i], wordToken);
 			i++;
